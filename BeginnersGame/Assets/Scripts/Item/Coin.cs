@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class Coin : Item
+public class Coin : Item, IEffect
 {
     public override void DestroyAfterTime()
     {
-        Invoke("Destroy", 5f);
+        Invoke("GetOpaque", 3f);
+        Invoke("DestroyThis", 5f);
     }
 
     void DestroyThis()
@@ -15,6 +16,12 @@ public class Coin : Item
     public override void ApplyItem()
     {
         DestroyThis();
+    }
+
+    public void GetOpaque()
+    {
+        Color32 color = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().color = new Color32(color.r, color.g, color.b, 50);
     }
 
     public void OnCollisionEnter2D(Collision2D coll)

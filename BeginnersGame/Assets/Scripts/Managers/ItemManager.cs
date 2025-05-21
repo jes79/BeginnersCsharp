@@ -6,31 +6,48 @@ public class ItemManager : MonoBehaviour
 {
     public Point[] Points = {
         new Point(0,0),
-        new Point(1,0),
-        new Point(0,1),
-        new Point(2,0),
-        new Point(0,2),
-
+        new Point(1,1),
+        new Point(1,-1),
+        new Point(-1,1),
+        new Point(-1,-1),
+        new Point(2,2),
+        new Point(2,-2),
+        new Point(-2,2),
+        new Point(-2,-2),
+        new Point(3,3),
+        new Point(3,-3),
+        new Point(-3,3),
+        new Point(-3,-3),
     };
+
     public GameObject[] ItemPrefabs = new GameObject[3];
 
-
-    private void Start()
+    void Start()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            GameObject prefab = ItemPrefabs[Random.Range(0,ItemPrefabs.Length)];
-            Vector2 pos = Points[Random.Range(0, Points.Length)].GetPos();
-            SpawnItem(prefab, pos);
-        }
+        SpawnRandom();
     }
 
+    /*
+    GameObject GetItem(Items item) //Items enum
+    {
+        return ItemPrefabs[(int)item];
+    }
+    */
 
     public void SpawnItem(GameObject itemPrefab, Vector2 pos)
     {
         GameObject obj = Instantiate(itemPrefab);
         obj.transform.position = pos;
     }
+
+    public void SpawnRandom()
+    {
+        GameObject prefab = ItemPrefabs[Random.Range(0, ItemPrefabs.Length)];
+        Vector2 pos = Points[Random.Range(0, Points.Length)].GetPos();
+        SpawnItem(prefab, pos);
+        Invoke("SpawnRandom", 1.0f);
+    }
+
 
 }
 

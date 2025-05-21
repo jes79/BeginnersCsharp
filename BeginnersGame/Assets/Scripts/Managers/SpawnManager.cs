@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject Enemy1Prefabs;
-    public GameObject Enemy2Prefabs;
+    public GameObject[] EnemyPrefabs;
+
+    public Point[] Points =
+    {
+        new Point(-3,-5),
+        new Point(-3,-3),
+        new Point(-3,-1),
+        new Point(-3,1),
+        new Point(-3,3),
+        new Point(-3,5),
+        new Point(3,-5),
+        new Point(3,-3),
+        new Point(3,-1),
+        new Point(3,1),
+        new Point(3,3),
+        new Point(3,5),
+    };
 
 
     void Start()
     {
-        SpawnEnemy(Enemy1Prefabs, new Vector3(1, 2, 0));
-        SpawnEnemy(Enemy2Prefabs, new Vector3(-1, 2, 0));
+        SpawnRandom();
+
     }
 
     public void SpawnEnemy(GameObject prefab, Vector3 _position)
@@ -21,4 +36,14 @@ public class SpawnManager : MonoBehaviour
         enemy.GetComponent<Enemy>().Move();
     }
 
+
+    public void SpawnRandom()
+    {
+        GameObject prefab = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Length)];
+        Vector2 pos = Points[Random.Range(0, Points.Length)].GetPos();
+        SpawnEnemy(prefab, pos);
+        Invoke("SpawnRandom", 0.3f); //Àç±Í
+    }
+
 }
+

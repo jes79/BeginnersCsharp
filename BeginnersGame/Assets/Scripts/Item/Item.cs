@@ -9,5 +9,15 @@ public abstract class Item : MonoBehaviour
     {
         DestroyAfterTime();
     }
-
 }
+
+public interface IEffect
+{
+    void GetOpaque();
+}
+
+public enum Items
+{
+    Coin, SpeedUp, PowerUp
+}
+
