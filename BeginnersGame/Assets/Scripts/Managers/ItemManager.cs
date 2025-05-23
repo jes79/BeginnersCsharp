@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
 
     void Start()
     {
-        SpawnRandom();
+        //SpawnRandom();
     }
 
     /*

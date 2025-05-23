@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        SpawnRandom();
+        //SpawnRandom();
 
     }
 
