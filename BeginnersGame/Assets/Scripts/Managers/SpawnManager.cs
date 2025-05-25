@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         //SpawnRandom();
-
+        EventManager.EnemyDieEvent += OnEnemyDie;
     }
 
     public void SpawnEnemy(GameObject prefab, Vector3 _position)
@@ -45,5 +45,9 @@ public class SpawnManager : MonoBehaviour
         Invoke("SpawnRandom", 0.3f); //Àç±Í
     }
 
+    public void OnEnemyDie()
+    {
+        Debug.Log("Enemy Die!");
+    }
 }
 
