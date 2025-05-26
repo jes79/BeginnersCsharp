@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] EnemyPrefabs;
 
-    public Point[] Points =
+    public List<Point> Points = new List<Point>
     {
         new Point(-3,-5),
         new Point(-3,-3),
@@ -39,15 +39,18 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnRandom()
     {
-        GameObject prefab = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Length)];
-        Vector2 pos = Points[Random.Range(0, Points.Length)].GetPos();
-        SpawnEnemy(prefab, pos);
+        //GameObject prefab = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Length)];
+        //Vector2 pos = Points[Random.Range(0, Points.Length)].GetPos();
+        //SpawnEnemy(prefab, pos);
+        SpawnEnemy(EnemyPrefabs[Random.Range(0, 2)], Points[Random.Range(0, Points.Count)].GetPos());
         Invoke("SpawnRandom", 0.3f); //Àç±Í
     }
 
     public void OnEnemyDie()
     {
         Debug.Log("Enemy Die!");
+        Point point = new Point(Random.Range(-3, 3), Random.Range(-5, 5));
+        Points.Add(point);
     }
 }
 
