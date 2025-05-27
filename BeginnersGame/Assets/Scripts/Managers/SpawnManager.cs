@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        //SpawnRandom();
+        // SpawnRandom();
         EventManager.EnemyDieEvent += OnEnemyDie;
     }
 
@@ -36,19 +36,23 @@ public class SpawnManager : MonoBehaviour
         enemy.GetComponent<Enemy>().Move();
     }
 
-
-    public void SpawnRandom()
+    public IEnumerator SpawnRandom()
     {
-        //GameObject prefab = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Length)];
-        //Vector2 pos = Points[Random.Range(0, Points.Length)].GetPos();
-        //SpawnEnemy(prefab, pos);
-        SpawnEnemy(EnemyPrefabs[Random.Range(0, 2)], Points[Random.Range(0, Points.Count)].GetPos());
-        Invoke("SpawnRandom", 0.3f); //Àç±Í
+        while (true)
+        {
+            yield return new WaitForSeconds(0.3f);
+            SpawnEnemy(EnemyPrefabs[Random.Range(0, 2)], Points[Random.Range(0, Points.Count)].GetPos());
+        }
     }
+
+    // public void SpawnRandom()
+    // {
+    //     SpawnEnemy(EnemyPrefabs[Random.Range(0, 2)], Points[Random.Range(0, Points.Count)].GetPos());
+    //     Invoke("SpawnRandom", 0.3f);
+    // }
 
     public void OnEnemyDie()
     {
-        Debug.Log("Enemy Die!");
         Point point = new Point(Random.Range(-3, 3), Random.Range(-5, 5));
         Points.Add(point);
     }

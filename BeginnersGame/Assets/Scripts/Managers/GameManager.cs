@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public void OnClickStartButton()
     {
         Cover.SetActive(false);
-        spawnManager.SpawnRandom();
+        StartCoroutine(spawnManager.SpawnRandom());
         itemManager.SpawnRandom();
     }
 
