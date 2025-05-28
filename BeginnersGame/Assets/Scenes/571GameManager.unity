@@ -669,6 +669,8 @@ MonoBehaviour:
   spawnManager: {fileID: 2054638275}
   itemManager: {fileID: 1012310404}
   Cover: {fileID: 520100500}
+  BestScoreText: {fileID: 2053587554}
+  ScoreText: {fileID: 5040679}
 --- !u!4 &639724406
 Transform:
   m_ObjectHideFlags: 0
